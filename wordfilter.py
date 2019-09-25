@@ -5,27 +5,26 @@ class WordFilter:
     def detect(self, in_word):
         return self.ng_word in in_word
 
-    def censor(self, in_word):
-        cens_str = in_word.replace(self.ng_word, '<censored>')
+    def censor(self, in_word, rep):
+        cens_str = in_word.replace(self.ng_word, rep)
         return cens_str
 
 
 def main():
+    # 入力
     in_str = "昨日のアーセナルの試合アツかった！"
+    rep_word = "<見せられないよ!>"
 
     my_filter = WordFilter("アーセナル")
 
     # NGワードが含まれている場合
-    my_filter.detect("昨日のアーセナルの試合アツかった！")  # Trueを返す ※出力されるわけではありません！
+    my_filter.detect(in_str)  # Trueを返す ※出力されるわけではありません！
 
     # NGワードが含まれていない場合
-    my_filter.detect("昨日のリバプールの試合アツかった！")  # Falseを返す ※出力されるわけではありません！
+    my_filter.detect(in_str)  # Falseを返す ※出力されるわけではありません！
 
-    # NGワードが含まれている場合
-    print(my_filter.censor("昨日のアーセナルの試合アツかった！"))  # "昨日の<censored>の試合アツかった！" を返す ※出力されるわけではありません！
-
-    # NGワードが含まれていない場合
-    print(my_filter.censor("昨日のリバプールの試合アツかった！"))  # "昨日のリバプールの試合アツかった！" を返す ※出力されるわけではありません！
+    print(my_filter.censor(in_str, rep_word))
+    print(my_filter.censor('昨日のリバプールの試合アツかった！', rep_word))
 
 
 if __name__ == '__main__':
