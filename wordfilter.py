@@ -19,17 +19,11 @@ class WordFilter:
 
 def main():
     # 入力
-    in_str = "昨日のアーセナルの試合アツかった！"
-    rep_word = "<見せられないよ!>"
-    ng_list = ['アーセナル', 'アツかった']
+    in_str = input('検索対象文字列を入力 -> ')
+    ng_list = input("NGワードを入力(複数の場合はスペース区切り) -> ").split(' ')
+    rep_word = input("NGワードを置換する文字列を入力 -> ")
 
     my_filter = WordFilter(ng_list)
-
-    # NGワードが含まれている場合
-    my_filter.detect(in_str)  # Trueを返す ※出力されるわけではありません！
-
-    # NGワードが含まれていない場合
-    my_filter.detect(in_str)  # Falseを返す ※出力されるわけではありません！
 
     print(my_filter.censor(in_str, rep_word))
     print(my_filter.censor('昨日のリバプールの試合アツかった！', rep_word))
